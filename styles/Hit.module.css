@@ -1,0 +1,55 @@
+.container {
+  border-radius: 0.4rem;
+  border: 0.1rem solid #9a9fc1;
+  display: flex;
+  width: 100%;
+  margin: 0.5rem 0;
+}
+
+.content {
+  margin-left: 1rem;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.imageContainer {
+  margin: 0.5rem 0 0.5rem 0.5rem;
+}
+
+.image {
+  border-radius: 0.4rem;
+}
+
+.mainContent > span, .restaurantInfo > span {
+  display: block;
+}
+
+.restaurantInfo {
+  max-width: 30%;
+  width: 30%;
+  margin: 0 1rem;
+}
+
+.rating {
+  display: flex;
+  position: relative;
+}
+
+.starsContainer {
+  display: flex;
+}
+
+.star {
+  width: 20px;
+  height: 20px;
+  position: relative;
+}
+
+.starsHighlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  display: flex;
+}
