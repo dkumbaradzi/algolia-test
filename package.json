@@ -6,7 +6,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prettier": "prettier --write ."
+    "prettier": "prettier --write .",
+    "tsc": "tsc -p tsconfig.json --noEmit --pretty"
   },
   "dependencies": {
     "@emotion/react": "^11.7.1",
