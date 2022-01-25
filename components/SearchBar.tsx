@@ -1,15 +1,13 @@
-import { useEffect, useState } from 'react';
-import { SearchBox } from 'react-instantsearch-dom';
+import { useEffect, useState } from 'react'
+import { SearchBox } from 'react-instantsearch-dom'
 import styles from '../styles/SearchBar.module.css'
-import getSearchClient from '../helpers/searchClient';
-import { SearchClient } from 'algoliasearch';
+import getSearchClient from '../helpers/searchClient'
+import { SearchClient } from 'algoliasearch'
 
 const SearchBar = () => {
-  console.log();
+  console.log()
 
-  return (
-      <SearchBox className={styles.container} />
-  )
+  return <SearchBox className={styles.container} />
 }
 
-export default SearchBar;
+export default SearchBar

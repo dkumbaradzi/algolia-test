@@ -21,7 +21,8 @@
   border-radius: 0.4rem;
 }
 
-.mainContent > span, .restaurantInfo > span {
+.mainContent > span,
+.restaurantInfo > span {
   display: block;
 }
 

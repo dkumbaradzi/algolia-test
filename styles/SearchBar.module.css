@@ -13,7 +13,7 @@
   display: flex;
 }
 
-.container input[type="search"] {
+.container input[type='search'] {
   appearance: none;
   border: 0.1rem solid #9a9fc1;
   border-radius: 0.4rem 0 0 0.4rem;
@@ -21,7 +21,7 @@
   width: 100%;
 }
 
-.container button[type="submit"] {
+.container button[type='submit'] {
   appearance: none;
   border: 0.1rem solid #9a9fc1;
   border-radius: 0 0.4rem 0.4rem 0;
@@ -29,12 +29,12 @@
   font-size: 1.6rem;
   font-weight: bold;
   display: inline-block;
-  padding: 0 2.0rem;
+  padding: 0 2rem;
   margin-left: -0.1rem;
   transition: background-color 200ms;
 }
 
-.container button[type="submit"]:hover {
+.container button[type='submit']:hover {
   background-color: #ebebeb;
   cursor: pointer;
   fill: #3d8d47;
