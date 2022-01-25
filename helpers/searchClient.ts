@@ -1,17 +1,22 @@
-import algoliasearch, { SearchClient } from 'algoliasearch';
+import algoliasearch, { SearchClient } from 'algoliasearch'
 
-let client: SearchClient | undefined;
+let client: SearchClient | undefined
 
-const getSearchClient = () => {
-  const ssrMode = typeof window === undefined;
-  if (!client || ssrMode) {
-    client = algoliasearch(
-      'OILU3UE8SF',
-      '7e49325517d6df4fbda1469b1fd8b261'
-    );
+const getSearchClient = (admin = false) => {
+  const key = admin
+    ? process.env.NEXT_PUBLIC_ALGOLIA_ADMIN_KEY
+    : process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY
+
+  if (!key) {
+    return null
   }
 
-  return client;
+  const ssrMode = typeof window === undefined
+  if (!client || ssrMode || admin) {
+    client = algoliasearch('OILU3UE8SF', key)
+  }
+
+  return client
 }
 
-export default getSearchClient;
+export default getSearchClient
