@@ -1,4 +1,5 @@
 import { ChangeEvent, PointerEvent, useState } from 'react'
+import { SelectChangeEvent } from "@mui/material"
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 import Dialog from '@mui/material/Dialog'
@@ -97,7 +98,8 @@ export const AddEntryModal = () => {
   const [open, setOpen] = useState(false)
 
   const client = getSearchClient(true)
-  const index = client.initIndex('dev_restaurants')
+
+  const index = client?.initIndex('dev_restaurants')
 
   const initialFormState: { [key: string]: any } = formFields.reduce(
     (acc, item) => {
@@ -128,16 +130,16 @@ export const AddEntryModal = () => {
     setOpen(false)
   }
 
-  const onSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    const { name, value } = e.target
+  const onSelectChange = (event: SelectChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target
 
     setFormState({
       ...formState,
-      [name]: value,
+      [name]: value as string,
     })
   }
 
-  const onFieldChange = (e: ChangeEvent<HTMLInputElement>, field: string) => {
+  const onFieldChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, field: string) => {
     setFormState({
       ...formState,
       [field]: e.currentTarget.value,
@@ -147,7 +149,7 @@ export const AddEntryModal = () => {
   const onSubmit = (e: PointerEvent<HTMLButtonElement>) => {
     const isValid = Object.values(formState).every((value) => value !== null)
 
-    if (!isValid) {
+    if (!isValid || !index) {
       return false
     }
 
@@ -155,7 +157,7 @@ export const AddEntryModal = () => {
       .saveObject(formState, {
         autoGenerateObjectIDIfNotExist: true,
       })
-      .then((result) => {
+      .then(() => {
         setOpen(false)
       })
   }

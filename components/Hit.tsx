@@ -64,7 +64,11 @@ const Stars = ({ keyId = '', filled = false }) => {
 const Hit = ({ hit }: Props) => {
   const [deleted, setDeleted] = useState(false)
   const client = getSearchClient(true)
-  const index = client.initIndex('dev_restaurants')
+  const index = client?.initIndex('dev_restaurants')
+
+  if (!client || !index) {
+    return null
+  }
 
   const deleteEntry = () => {
     index
