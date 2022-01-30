@@ -1,4 +1,4 @@
-import { ChangeEvent, PointerEvent, useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { SelectChangeEvent } from "@mui/material"
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
@@ -8,7 +8,6 @@ import DialogContent from '@mui/material/DialogContent'
 import DialogContentText from '@mui/material/DialogContentText'
 import DialogTitle from '@mui/material/DialogTitle'
 import Box from '@mui/material/Box'
-import getSearchClient from '../helpers/searchClient'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
@@ -97,10 +96,6 @@ const formFields = [
 export const AddEntryModal = () => {
   const [open, setOpen] = useState(false)
 
-  const client = getSearchClient(true)
-
-  const index = client?.initIndex('dev_restaurants')
-
   const initialFormState: { [key: string]: any } = formFields.reduce(
     (acc, item) => {
       return {
@@ -146,20 +141,26 @@ export const AddEntryModal = () => {
     })
   }
 
-  const onSubmit = (e: PointerEvent<HTMLButtonElement>) => {
+  const onSubmit = async () => {
     const isValid = Object.values(formState).every((value) => value !== null)
 
-    if (!isValid || !index) {
+    if (!isValid) {
       return false
     }
 
-    index
-      .saveObject(formState, {
-        autoGenerateObjectIDIfNotExist: true,
-      })
-      .then(() => {
+    await fetch('/api/add', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(formState),
+    }).then(response => {
+      if (response.status === 200) {
         setOpen(false)
-      })
+      }
+    }).catch(e => {
+      throw new Error(`Error: ${e}`)
+    })
   }
 
   return (

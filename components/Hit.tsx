@@ -3,7 +3,6 @@ import styles from '../styles/Hit.module.css'
 import Image from 'next/image'
 import StarIcon from '../public/star.svg'
 import StarIconFilled from '../public/star-filled.svg'
-import getSearchClient from '../helpers/searchClient'
 import Button from '@mui/material/Button'
 
 type GeoLocation = {
@@ -63,23 +62,18 @@ const Stars = ({ keyId = '', filled = false }) => {
 
 const Hit = ({ hit }: Props) => {
   const [deleted, setDeleted] = useState(false)
-  const client = getSearchClient(true)
-  const index = client?.initIndex('dev_restaurants')
 
-  if (!client || !index) {
-    return null
-  }
-
-  const deleteEntry = () => {
-    index
-      .deleteObject(hit.objectID)
-      .then((response) => {
-        console.log('response', response)
+  const deleteEntry = async () => {
+    await fetch(`/api/delete/${hit.objectID}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then((response) => {
+      if (response.status === 200) {
         setDeleted(true)
-      })
-      .catch((error) => {
-        console.log('error', error)
-      })
+      }
+    })
   }
 
   const priceMarker = '$'
