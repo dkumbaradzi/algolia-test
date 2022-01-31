@@ -32,9 +32,15 @@
   margin: 0 1rem;
 }
 
+.restaurantInfo > button {
+  margin: 0.5rem 0;
+}
+
 .rating {
+  align-items: center;
   display: flex;
   position: relative;
+  margin: 0.5rem 0;
 }
 
 .starsContainer {

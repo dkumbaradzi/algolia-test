@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from 'react'
-import { SelectChangeEvent } from "@mui/material"
+import { SelectChangeEvent } from '@mui/material'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 import Dialog from '@mui/material/Dialog'
@@ -12,6 +12,8 @@ import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
+
+import styles from '../styles/AddEntryModal.module.css'
 
 const formFields = [
   {
@@ -149,22 +151,24 @@ export const AddEntryModal = () => {
     }
 
     await fetch('/api/add', {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json"
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(formState),
-    }).then(response => {
-      if (response.status === 200) {
-        setOpen(false)
-      }
-    }).catch(e => {
-      throw new Error(`Error: ${e}`)
     })
+      .then((response) => {
+        if (response.status === 200) {
+          setOpen(false)
+        }
+      })
+      .catch((e) => {
+        throw new Error(`Error: ${e}`)
+      })
   }
 
   return (
-    <div>
+    <div className={styles.modalContainer}>
       <Button variant="outlined" onClick={handleClickOpen}>
         Add Restaurant
       </Button>

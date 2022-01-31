@@ -45,3 +45,14 @@ ul li {
 [class^='ais-Pagination'] {
   color: #3a4570;
 }
+
+/* Custom styling */
+
+[class^='ais-RefinementList-showMore'] {
+  appearance: none;
+  border: none;
+  background: none;
+  color: #1976d2;
+  font-family: inherit;
+  font-size: 1.4rem;
+}

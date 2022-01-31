@@ -33,12 +33,12 @@ const SearchBar = () => {
   )
 
   const onReset = useCallback(() => {
-    const { q, ...otherParams } = queryParams;
+    const { q, ...otherParams } = queryParams
     router.push(
       {
         pathname: '/search/1',
         query: {
-          ...otherParams
+          ...otherParams,
         },
       },
       undefined,
