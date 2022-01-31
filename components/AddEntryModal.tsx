@@ -140,6 +140,8 @@ export const AddEntryModal = () => {
     setFormState({
       ...formState,
       [field]: e.currentTarget.value,
+      phone_number: formState.phone,
+      rounded_stars_count: parseInt(formState.stars_count, 10),
     })
   }
 
@@ -220,18 +222,6 @@ export const AddEntryModal = () => {
               />
             )
           })}
-          <input
-            type="hidden"
-            id="phone_number"
-            onChange={(e) => onFieldChange(e, 'phone_number')}
-            value={formState.phone}
-          />
-          <input
-            type="hidden"
-            id="rounded_stars_count"
-            onChange={(e) => onFieldChange(e, 'rounded_stars_count')}
-            value={parseInt(formState.stars_count, 10)}
-          />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
